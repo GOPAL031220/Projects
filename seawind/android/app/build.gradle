@@ -1,0 +1,42 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // Flutter Gradle Plugin must be applied after Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.seawind"
+    compileSdk = 34 // Update to the latest supported SDK version
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8" // Explicitly set Kotlin JVM target
+    }
+
+    defaultConfig {
+        applicationId = "com.example.seawind" // Unique Application ID
+        minSdk = 21 // Minimum SDK version explicitly set (21 supports most modern features)
+        targetSdk = 34 // Update to the latest supported SDK version
+        versionCode = 1 // Your app's version code
+        versionName = "1.0" // Your app's version name
+    }
+
+    buildTypes {
+        release {
+            // Enables code shrinking, obfuscation, and optimization for release builds
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // Signing with debug keys for now; replace with release key when ready for production
+            signingConfig signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source = "../.." // Flutter source directory
+}
